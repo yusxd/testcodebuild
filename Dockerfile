@@ -1,17 +1,5 @@
-# Gunakan image Node.js sebagai dasar
-FROM node:14
+# Gunakan image nginx sebagai base image
+FROM nginx:latest
 
-# Set direktori kerja
-WORKDIR /app
-
-# Salin file package.json dan package-lock.json ke direktori kerja
-COPY package*.json ./
-
-# Install dependensi
-RUN npm install
-
-# Salin seluruh sumber kode aplikasi
-COPY . .
-
-# Jalankan aplikasi ketika container dijalankan
-CMD [ "node", "index.js" ]
+# Salin file HTML ke direktori default nginx
+COPY index.html /usr/share/nginx/html/
